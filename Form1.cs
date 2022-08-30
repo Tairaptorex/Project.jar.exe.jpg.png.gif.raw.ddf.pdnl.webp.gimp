@@ -19,6 +19,7 @@ namespace Attempt4
         Random yspeed = new Random();
         public Random xspeed = new Random();
         public Random ting = new Random();
+        int lives = 10;
 
 
 
@@ -39,7 +40,7 @@ namespace Attempt4
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Gamespace_KeyDown(object sender, KeyEventArgs e)
@@ -71,6 +72,16 @@ namespace Attempt4
             }
         }
 
+        private void CheckLives()
+        {
+            if (lives == 0)
+            {
+                movetimer.Enabled = false;
+                timer1.Enabled = false;
+                MessageBox.Show("Game Over");
+
+            }
+        }
 
 
         private void movetimer_Tick(object sender, EventArgs e)
@@ -82,6 +93,19 @@ namespace Attempt4
             for (int i = 0; i < 9; i++)
             {
                 enemy[i].MoveEnemy();
+
+                if (player.playerRec.IntersectsWith(enemy[i].enemyRec))
+                {
+                    //reset planet[i] back to top of panel
+                    enemy[i].y = 30; // set  y value of planetRec
+                    lives -= 1;// lose a life
+                    CheckLives();
+                }
+
+
+
+
+
                 //if a planet reaches the bottom of the Game Area reposition it at the top
                 if (enemy[i].y >= GamePanel.Height)
                 {
