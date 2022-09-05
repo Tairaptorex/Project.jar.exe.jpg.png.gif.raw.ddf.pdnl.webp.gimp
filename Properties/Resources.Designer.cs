@@ -63,6 +63,16 @@ namespace Attempt4.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bullet {
+            get {
+                object obj = ResourceManager.GetObject("bullet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CorpFighter {
             get {
                 object obj = ResourceManager.GetObject("CorpFighter", resourceCulture);
@@ -83,9 +93,29 @@ namespace Attempt4.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GmeTitle {
+            get {
+                object obj = ResourceManager.GetObject("GmeTitle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HexFighter {
             get {
                 object obj = ResourceManager.GetObject("HexFighter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpaceBG {
+            get {
+                object obj = ResourceManager.GetObject("SpaceBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

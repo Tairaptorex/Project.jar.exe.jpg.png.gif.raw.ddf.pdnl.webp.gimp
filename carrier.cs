@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Attempt4
 {
-    class Enemy
+    class carrier
     {
 
         // declare fields to use in the class
         public int x, y, width, height;//variables for the rectangle
-        public Image enemyImage;//variable for the planet's image
-        public Random ting = new Random();
-        public Rectangle enemyRec;//variable for a rectangle to place our image in
-        public int query,lives;
-        public Enemy(int spacing)
+        public Image carrierImage;//variable for the planet's image
+        public Random thing = new Random();
+        public Rectangle carrierRec;//variable for a rectangle to place our image in
+        public int query, lives;
+        public carrier(int spacing)
         {
             x = spacing;
             y = -30;
@@ -24,8 +24,8 @@ namespace Attempt4
             width = 40;
             height = 40;
             //enemyImage contains the CorpFighter.png image
-            enemyImage = Properties.Resources.CorpFighter;
-            enemyRec = new Rectangle(x, y, width, height);
+            carrierImage = Properties.Resources.CorpScore;
+            carrierRec = new Rectangle(x, y, width, height);
         }
 
         public void BulletHit()
@@ -38,26 +38,26 @@ namespace Attempt4
             }
         }
 
-        public void DrawEnemy(Graphics g)
+        public void DrawCarrier(Graphics g)
         {
-            enemyRec = new Rectangle(x, y, width, height);
-            g.DrawImage(enemyImage, enemyRec);
+            carrierRec = new Rectangle(x, y, width, height);
+            g.DrawImage(carrierImage, carrierRec);
         }
 
-        public void MoveEnemy()
+        public void MoveCarrier()
         {
-            enemyRec.Location = new Point(x, y);
+            carrierRec.Location = new Point(x, y);
         }
 
-        public void MoveEnemyX(int rand)
+        public void MoveCarrierX(int rand)
         {
             if (rand == 0)
-            {    
-                    enemyRec.Location = new Point(x += 5, y);
+            {
+                carrierRec.Location = new Point(x += 5, y);
             }
             else
             {
-                enemyRec.Location = new Point(x -= 5, y);
+                carrierRec.Location = new Point(x -= 5, y);
             }
 
         }
@@ -66,3 +66,4 @@ namespace Attempt4
 
     }
 }
+
