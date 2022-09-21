@@ -20,13 +20,14 @@ namespace Attempt4
         Random yspeed = new Random();
         public Random xspeed = new Random();
         public Random ting = new Random();
-        int lives = 5;
+        int lives = 10;
         int playerspeed = 1;
         List<Missile> missiles = new List<Missile>();
         int playerscore = 0;
         public int scorefsx = 0;
         bool assist;
-
+        bool title;
+        int slipstream = 0;
 
         bool left, right, pacc;
         string move;
@@ -61,10 +62,14 @@ namespace Attempt4
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            settings.Visible = true;
             truescore.Text = "";
+            truescore.Visible = false;
+            damage.Text = "";
+            damage.Visible = false;
             scoreadd.Visible = false;
-
-            movetimer.Enabled = false;
+            title = true;
+            movetimer.Enabled = true;
             timer1.Enabled = false;
             playertimer.Enabled = false;
             shooting.Enabled = false;
@@ -72,12 +77,15 @@ namespace Attempt4
             playbtn.Visible = true;
             helpbtn.Visible = false;
             assist = false;
+            exit.Visible = true;
+            Warning.Visible = false;
+            warninglbl.Visible = false;
         }
 
         private void Gamespace_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Left) { left = true; }
-            if (e.KeyData == Keys.Right) { right = true; }
+            if (e.KeyData == Keys.Left) { left = true; slipstream = 0; }
+            if (e.KeyData == Keys.Right) { right = true; slipstream = 0; }
             if (e.KeyData == Keys.Down) { pacc = true;
                 shoottimer.Interval = 100;
             }
@@ -91,6 +99,8 @@ namespace Attempt4
             if (e.KeyData == Keys.Down) { pacc = false;
                 shoottimer.Interval = 10;
             }
+
+            if (e.KeyData == Keys.Escape) { lives = 0; }
 
         }
 
@@ -109,13 +119,26 @@ namespace Attempt4
             }
 
 
+            if (slipstream > 50){
+                lives--;
+                CheckLives();
+                Warning.Visible = true;
+                warninglbl.Visible = true;
+            }
+            else
+            {
+                Warning.Visible = false;
+                warninglbl.Visible = false;
+            }
+
         }
 
         private void CheckLives()
         {
-            if (lives == 0)
+            if (lives <= 1)
             {
-                movetimer.Enabled = false;
+                settings.Visible = true;
+                movetimer.Enabled = true;
                 timer1.Enabled = false;
                 playertimer.Enabled = false;
                 shooting.Enabled = false;
@@ -123,7 +146,15 @@ namespace Attempt4
                 playbtn.Visible = true;
                 int score = playerscore + scorefsx;
                 scorelbl.Text = "Your final score was: " + score;
+                title = true;
+                damage.Visible = false;
+                truescore.Visible = false;
                 helpbtn.Visible = true;
+                instructions.Visible = true;
+                exit.Visible = true;
+                slipstream = 0;
+                Warning.Visible = false;
+                warninglbl.Visible = false;
             }
         }
 
@@ -131,6 +162,29 @@ namespace Attempt4
         private void movetimer_Tick(object sender, EventArgs e)
         {
             GamePanel.Invalidate();
+
+
+
+            int health = 100 - lives;
+            damage.Text = "Damage: " + health.ToString() + " %";
+
+
+
+
+
+            if (title == true)
+            {
+                if (titleBX.Location.Y < 142 ) {
+                    titleBX.Top = -1;
+                }
+            }
+            else
+            {
+                if(titleBX.Location.Y > 30 ) {
+                    titleBX.Top = -1;
+                }
+            }
+
 
             if (assist == true)
             {
@@ -169,7 +223,7 @@ namespace Attempt4
             }
 
             scoreadd.Text = scorefsx.ToString();
-            truescore.Text = playerscore.ToString();
+            truescore.Text = "Score: " + playerscore.ToString();
 
             player.transformplayer(move);
 
@@ -294,17 +348,26 @@ namespace Attempt4
         private void playbtn_Click(object sender, EventArgs e)
         {
             movetimer.Enabled = true;
+            truescore.Visible = true;
             timer1.Enabled = true;
             playertimer.Enabled = true;
             shooting.Enabled = true;
+            settings.Visible = false;
             shoottimer.Enabled = true;
             playbtn.Visible = false;
             helpbtn.Visible = false;
             assist = false;
+            title = false;
             playerscore = 0;
             scorefsx = 0;
-            lives = 5;
+            lives = 100;
             scorelbl.Text = "";
+            instructions.Visible = false;
+            damage.Visible = true;
+            exit.Visible = false;
+            slipstream = 0;
+            Warning.Visible = false;
+            warninglbl.Visible = false;
         }
 
         private void helpbtn_Click(object sender, EventArgs e)
@@ -315,12 +378,47 @@ namespace Attempt4
             shooting.Enabled = true;
             shoottimer.Enabled = true;
             playbtn.Visible = false;
+            settings.Visible = false;
             helpbtn.Visible = false;
+            exit.Visible = false;
+            instructions.Visible = false;
             assist = true;
             playerscore = 0;
             scorefsx = 0;
             lives = 2000000;
             scorelbl.Text = "";
+            damage.Visible = true;
+            slipstream = 0;
+            Warning.Visible = false;
+            warninglbl.Visible = false;
+        }
+
+        private void instructions_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("Controling Your new ADSC Model Type V HMHRV (Helixtronics Millitary-grade Hypermanuverable Retrospace Vehicle)." + "\n" + "\n" + " Using Left (<--) Arrow button will increase your acceleration to the Left, while Right (-->) Arrow will increase your acceleration to the Right. Down Arrow will decrease your overall acceleration to make difficult manuvers easy." + "\n" + "Helixtronics Tech makes it easy to destroy enemy ships, Collect as much score as possible without taking too much damage to your fighter by hitting enemies." + "\n" + "Press Escape to Suicide. Don't stay still for too long otherwise you will take sustained slipstream damage!", "Comprehensive Directions For Playing Exinoid", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void settings_Click(object sender, EventArgs e)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Would you like to apply maximum graphics settings? (This cannot be undone!)", "Settings", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+ 
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                GamePanel.BackgroundImage = Properties.Resources.SpaceBG;
+            }
+        }
+
+        private void deathtmr_Tick(object sender, EventArgs e)
+        {
+            slipstream ++;
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void shoottimer_Tick(object sender, EventArgs e)
