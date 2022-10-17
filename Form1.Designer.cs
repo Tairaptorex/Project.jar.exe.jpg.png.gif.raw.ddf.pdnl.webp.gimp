@@ -50,6 +50,7 @@ namespace Attempt4
             this.shooting = new System.Windows.Forms.Timer(this.components);
             this.shoottimer = new System.Windows.Forms.Timer(this.components);
             this.deathtmr = new System.Windows.Forms.Timer(this.components);
+            this.TextBox = new System.Windows.Forms.TextBox();
             this.GamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Warning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleBX)).BeginInit();
@@ -58,6 +59,7 @@ namespace Attempt4
             // GamePanel
             // 
             this.GamePanel.BackColor = System.Drawing.Color.Black;
+            this.GamePanel.Controls.Add(this.TextBox);
             this.GamePanel.Controls.Add(this.warninglbl);
             this.GamePanel.Controls.Add(this.Warning);
             this.GamePanel.Controls.Add(this.exit);
@@ -106,7 +108,7 @@ namespace Attempt4
             this.exit.Cursor = System.Windows.Forms.Cursors.Help;
             this.exit.Font = new System.Drawing.Font("OCR A Extended", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.exit.Location = new System.Drawing.Point(251, 304);
+            this.exit.Location = new System.Drawing.Point(251, 340);
             this.exit.Margin = new System.Windows.Forms.Padding(0);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(310, 23);
@@ -121,7 +123,7 @@ namespace Attempt4
             this.settings.Cursor = System.Windows.Forms.Cursors.Help;
             this.settings.Font = new System.Drawing.Font("OCR A Extended", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settings.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.settings.Location = new System.Drawing.Point(251, 277);
+            this.settings.Location = new System.Drawing.Point(251, 313);
             this.settings.Margin = new System.Windows.Forms.Padding(0);
             this.settings.Name = "settings";
             this.settings.Size = new System.Drawing.Size(310, 23);
@@ -134,10 +136,11 @@ namespace Attempt4
             // 
             this.damage.AutoSize = true;
             this.damage.BackColor = System.Drawing.Color.Transparent;
-            this.damage.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.damage.Location = new System.Drawing.Point(712, 10);
+            this.damage.Font = new System.Drawing.Font("OCR A Extended", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.damage.ForeColor = System.Drawing.Color.Red;
+            this.damage.Location = new System.Drawing.Point(18, 17);
             this.damage.Name = "damage";
-            this.damage.Size = new System.Drawing.Size(35, 13);
+            this.damage.Size = new System.Drawing.Size(61, 13);
             this.damage.TabIndex = 8;
             this.damage.Text = "label3";
             // 
@@ -147,7 +150,7 @@ namespace Attempt4
             this.instructions.Cursor = System.Windows.Forms.Cursors.Help;
             this.instructions.Font = new System.Drawing.Font("OCR A Extended", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instructions.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.instructions.Location = new System.Drawing.Point(251, 251);
+            this.instructions.Location = new System.Drawing.Point(251, 287);
             this.instructions.Margin = new System.Windows.Forms.Padding(0);
             this.instructions.Name = "instructions";
             this.instructions.Size = new System.Drawing.Size(310, 23);
@@ -160,7 +163,7 @@ namespace Attempt4
             // 
             this.titleBX.BackColor = System.Drawing.Color.Transparent;
             this.titleBX.Image = global::Attempt4.Properties.Resources.GmeTitle;
-            this.titleBX.Location = new System.Drawing.Point(177, 142);
+            this.titleBX.Location = new System.Drawing.Point(176, 160);
             this.titleBX.Name = "titleBX";
             this.titleBX.Size = new System.Drawing.Size(468, 58);
             this.titleBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -173,7 +176,7 @@ namespace Attempt4
             this.helpbtn.Cursor = System.Windows.Forms.Cursors.No;
             this.helpbtn.Font = new System.Drawing.Font("OCR A Extended", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.helpbtn.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.helpbtn.Location = new System.Drawing.Point(251, 330);
+            this.helpbtn.Location = new System.Drawing.Point(251, 366);
             this.helpbtn.Name = "helpbtn";
             this.helpbtn.Size = new System.Drawing.Size(310, 23);
             this.helpbtn.TabIndex = 5;
@@ -185,7 +188,8 @@ namespace Attempt4
             // 
             this.scorelbl.AutoSize = true;
             this.scorelbl.BackColor = System.Drawing.Color.Transparent;
-            this.scorelbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.scorelbl.Font = new System.Drawing.Font("OCR A Extended", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scorelbl.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.scorelbl.Location = new System.Drawing.Point(248, 187);
             this.scorelbl.Name = "scorelbl";
             this.scorelbl.Size = new System.Drawing.Size(0, 13);
@@ -197,7 +201,7 @@ namespace Attempt4
             this.playbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playbtn.Font = new System.Drawing.Font("OCR A Extended", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playbtn.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.playbtn.Location = new System.Drawing.Point(251, 214);
+            this.playbtn.Location = new System.Drawing.Point(251, 250);
             this.playbtn.Name = "playbtn";
             this.playbtn.Size = new System.Drawing.Size(310, 34);
             this.playbtn.TabIndex = 3;
@@ -209,10 +213,11 @@ namespace Attempt4
             // 
             this.scoreadd.AutoSize = true;
             this.scoreadd.BackColor = System.Drawing.Color.Transparent;
-            this.scoreadd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.scoreadd.Location = new System.Drawing.Point(19, 37);
+            this.scoreadd.Font = new System.Drawing.Font("OCR A Extended", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreadd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.scoreadd.Location = new System.Drawing.Point(18, 53);
             this.scoreadd.Name = "scoreadd";
-            this.scoreadd.Size = new System.Drawing.Size(35, 13);
+            this.scoreadd.Size = new System.Drawing.Size(53, 12);
             this.scoreadd.TabIndex = 2;
             this.scoreadd.Text = "label3";
             // 
@@ -220,10 +225,11 @@ namespace Attempt4
             // 
             this.truescore.AutoSize = true;
             this.truescore.BackColor = System.Drawing.Color.Transparent;
-            this.truescore.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.truescore.Location = new System.Drawing.Point(19, 14);
+            this.truescore.Font = new System.Drawing.Font("OCR A Extended", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.truescore.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.truescore.Location = new System.Drawing.Point(18, 40);
             this.truescore.Name = "truescore";
-            this.truescore.Size = new System.Drawing.Size(35, 13);
+            this.truescore.Size = new System.Drawing.Size(61, 13);
             this.truescore.TabIndex = 1;
             this.truescore.Text = "label2";
             // 
@@ -270,6 +276,20 @@ namespace Attempt4
             this.deathtmr.Enabled = true;
             this.deathtmr.Tick += new System.EventHandler(this.deathtmr_Tick);
             // 
+            // TextBox
+            // 
+            this.TextBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.TextBox.Font = new System.Drawing.Font("OCR A Extended", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.TextBox.Location = new System.Drawing.Point(251, 224);
+            this.TextBox.MaxLength = 14;
+            this.TextBox.Name = "TextBox";
+            this.TextBox.Size = new System.Drawing.Size(310, 20);
+            this.TextBox.TabIndex = 13;
+            this.TextBox.Text = "Enter Player Name...";
+            this.TextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseClick);
+            this.TextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Gamespace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +333,7 @@ namespace Attempt4
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.PictureBox Warning;
         private System.Windows.Forms.Label warninglbl;
+        private System.Windows.Forms.TextBox TextBox;
     }
 }
 

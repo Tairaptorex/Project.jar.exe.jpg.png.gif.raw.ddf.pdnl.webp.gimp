@@ -31,6 +31,7 @@ namespace Attempt4
 
         bool left, right, pacc;
         string move;
+        string playername = "player";
 
         public Gamespace()
         {
@@ -80,6 +81,8 @@ namespace Attempt4
             exit.Visible = true;
             Warning.Visible = false;
             warninglbl.Visible = false;
+            TextBox.Enabled = true;
+            TextBox.Visible = true;
         }
 
         private void Gamespace_KeyDown(object sender, KeyEventArgs e)
@@ -137,6 +140,19 @@ namespace Attempt4
         {
             if (lives <= 1)
             {
+
+                if (playername == "")
+                {
+                    TextBox.Text = "Player";
+                    playername = "player";
+                }
+
+                if (playername == "Enter Player Name...")
+                {
+                    TextBox.Text = "Player";
+                    playername = "player";
+                }
+
                 settings.Visible = true;
                 movetimer.Enabled = true;
                 timer1.Enabled = false;
@@ -145,7 +161,7 @@ namespace Attempt4
                 shoottimer.Enabled = false;
                 playbtn.Visible = true;
                 int score = playerscore + scorefsx;
-                scorelbl.Text = "Your final score was: " + score;
+                scorelbl.Text = playername + "'s final score was: " + score;
                 title = true;
                 damage.Visible = false;
                 truescore.Visible = false;
@@ -155,6 +171,12 @@ namespace Attempt4
                 slipstream = 0;
                 Warning.Visible = false;
                 warninglbl.Visible = false;
+                TextBox.Enabled = true;
+                TextBox.Visible = true;
+                scoreadd.Visible = true;
+
+
+
             }
         }
 
@@ -211,11 +233,14 @@ namespace Attempt4
                 if (playerspeed > 0) { playerspeed--; }
             }
 
+            if (scorefsx < 10) { scorefsx = 0; }
+
             if (scorefsx > 0)
             {
                 scoreadd.Visible = true;
-                scorefsx --;
-                playerscore ++;
+                playerscore += scorefsx / 10;
+                scorefsx -= scorefsx / 10;
+
             }
             else
             {
@@ -368,6 +393,10 @@ namespace Attempt4
             slipstream = 0;
             Warning.Visible = false;
             warninglbl.Visible = false;
+            TextBox.Visible = false;
+            TextBox.Enabled = false;
+            playername = TextBox.Text;
+            scoreadd.Visible = false;
         }
 
         private void helpbtn_Click(object sender, EventArgs e)
@@ -391,6 +420,9 @@ namespace Attempt4
             slipstream = 0;
             Warning.Visible = false;
             warninglbl.Visible = false;
+            TextBox.Enabled = false;
+            TextBox.Visible = false;
+            scoreadd.Visible = false;
         }
 
         private void instructions_Click(object sender, EventArgs e)
@@ -419,6 +451,15 @@ namespace Attempt4
         private void exit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void TextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            TextBox.Text = "";
         }
 
         private void shoottimer_Tick(object sender, EventArgs e)
@@ -456,7 +497,7 @@ namespace Attempt4
                         }
                         else
                         {
-                            scorefsx += 5;
+                            scorefsx += 10;
                         }
                     }
                 }
@@ -475,7 +516,7 @@ namespace Attempt4
                         }
                         else
                         {
-                            scorefsx += 20;
+                            scorefsx += 50;
                         }
                     }
                 }
