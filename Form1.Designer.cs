@@ -31,6 +31,7 @@ namespace Attempt4
         {
             this.components = new System.ComponentModel.Container();
             this.GamePanel = new System.Windows.Forms.Panel();
+            this.TextBox = new System.Windows.Forms.TextBox();
             this.warninglbl = new System.Windows.Forms.Label();
             this.Warning = new System.Windows.Forms.PictureBox();
             this.exit = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@ namespace Attempt4
             this.shooting = new System.Windows.Forms.Timer(this.components);
             this.shoottimer = new System.Windows.Forms.Timer(this.components);
             this.deathtmr = new System.Windows.Forms.Timer(this.components);
-            this.TextBox = new System.Windows.Forms.TextBox();
             this.GamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Warning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleBX)).BeginInit();
@@ -78,6 +78,21 @@ namespace Attempt4
             this.GamePanel.Size = new System.Drawing.Size(812, 1000);
             this.GamePanel.TabIndex = 0;
             this.GamePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // TextBox
+            // 
+            this.TextBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.TextBox.Font = new System.Drawing.Font("OCR A Extended", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.TextBox.Location = new System.Drawing.Point(251, 224);
+            this.TextBox.MaxLength = 14;
+            this.TextBox.Name = "TextBox";
+            this.TextBox.Size = new System.Drawing.Size(310, 20);
+            this.TextBox.TabIndex = 13;
+            this.TextBox.Text = "Enter Player Name...";
+            this.TextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseClick);
+            this.TextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // warninglbl
             // 
@@ -275,20 +290,6 @@ namespace Attempt4
             // 
             this.deathtmr.Enabled = true;
             this.deathtmr.Tick += new System.EventHandler(this.deathtmr_Tick);
-            // 
-            // TextBox
-            // 
-            this.TextBox.BackColor = System.Drawing.SystemColors.MenuText;
-            this.TextBox.Font = new System.Drawing.Font("OCR A Extended", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.TextBox.Location = new System.Drawing.Point(251, 224);
-            this.TextBox.MaxLength = 14;
-            this.TextBox.Name = "TextBox";
-            this.TextBox.Size = new System.Drawing.Size(310, 20);
-            this.TextBox.TabIndex = 13;
-            this.TextBox.Text = "Enter Player Name...";
-            this.TextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseClick);
-            this.TextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Gamespace
             // 
