@@ -414,7 +414,7 @@ namespace Attempt4
             assist = true;
             playerscore = 0;
             scorefsx = 0;
-            lives = 2000000;
+            lives = 100;
             scorelbl.Text = "";
             damage.Visible = true;
             slipstream = 0;
@@ -422,7 +422,7 @@ namespace Attempt4
             warninglbl.Visible = false;
             TextBox.Enabled = false;
             TextBox.Visible = false;
-            scoreadd.Visible = false;
+            scoreadd.Visible = true;
         }
 
         private void instructions_Click(object sender, EventArgs e) // instructions
@@ -540,13 +540,13 @@ namespace Attempt4
                 if (assist == true)
                 {
                     int rndmspeed = yspeed.Next(1, 2);
-                    enemy[i].y += rndmspeed;
+                    enemy[i].y += rndmspeed + (playerscore / 10000);
                     enemy[i].DrawEnemy(g);
                 }
                 else
                 {
-                    int rndmspeed = yspeed.Next(8, 12);
-                    enemy[i].y += rndmspeed;
+                    int rndmspeed = yspeed.Next(0, 9);
+                    enemy[i].y += rndmspeed + (playerscore / 10000);
                     enemy[i].DrawEnemy(g);
                 }
 
@@ -563,7 +563,7 @@ namespace Attempt4
                 }
                     else
                     {
-                        int rndmspeed = yspeed.Next(5, 10);
+                        int rndmspeed = yspeed.Next(0, 7);
                         carrier[i].y += rndmspeed;
                         carrier[i].DrawCarrier(g);
                     }
