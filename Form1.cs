@@ -33,7 +33,7 @@ namespace Attempt4
         string move;
         string playername = "player";
 
-        public Gamespace()
+        public Gamespace() //stops flickering
         {
             InitializeComponent();
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, GamePanel, new object[] { true });
@@ -61,7 +61,7 @@ namespace Attempt4
 
 
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e) //on startup controls
         {
             settings.Visible = true;
             truescore.Text = "";
@@ -85,7 +85,7 @@ namespace Attempt4
             TextBox.Visible = true;
         }
 
-        private void Gamespace_KeyDown(object sender, KeyEventArgs e)
+        private void Gamespace_KeyDown(object sender, KeyEventArgs e) // movement controls
         {
             if (e.KeyData == Keys.Left) { left = true; slipstream = 0; }
             if (e.KeyData == Keys.Right) { right = true; slipstream = 0; }
@@ -136,7 +136,7 @@ namespace Attempt4
 
         }
 
-        private void CheckLives()
+        private void CheckLives() //lives event/death event
         {
             if (lives <= 1)
             {
@@ -188,13 +188,13 @@ namespace Attempt4
 
 
             int health = 100 - lives;
-            damage.Text = "Damage: " + health.ToString() + " %";
+            damage.Text = "Damage: " + health.ToString() + " %"; //dmg conversions
 
 
 
 
 
-            if (title == true)
+            if (title == true)//title controls
             {
                 if (titleBX.Location.Y < 142 ) {
                     titleBX.Top = -1;
@@ -208,7 +208,7 @@ namespace Attempt4
             }
 
 
-            if (assist == true)
+            if (assist == true)//assist mode movement aids
             {
                 movetimer.Interval = 20;
                 movetimer.Interval = 20;
@@ -226,7 +226,7 @@ namespace Attempt4
 
                 if (pacc == true)
             {
-                if (playerspeed < 10) { playerspeed++; }
+                if (playerspeed < 10) { playerspeed++; } // additional acceleration code
             }
             else
             {
@@ -309,7 +309,7 @@ namespace Attempt4
             {
                 carrier[i].MoveCarrier();
 
-                if (player.playerRec.IntersectsWith(carrier[i].carrierRec))
+                if (player.playerRec.IntersectsWith(carrier[i].carrierRec)) // collousion code
                 {
 
 
@@ -370,7 +370,7 @@ namespace Attempt4
 
         }
 
-        private void playbtn_Click(object sender, EventArgs e)
+        private void playbtn_Click(object sender, EventArgs e) // normal mode triggers
         {
             movetimer.Enabled = true;
             truescore.Visible = true;
@@ -399,7 +399,7 @@ namespace Attempt4
             scoreadd.Visible = false;
         }
 
-        private void helpbtn_Click(object sender, EventArgs e)
+        private void helpbtn_Click(object sender, EventArgs e) //assist mode triggers
         {
             movetimer.Enabled = true;
             timer1.Enabled = true;
@@ -425,7 +425,7 @@ namespace Attempt4
             scoreadd.Visible = false;
         }
 
-        private void instructions_Click(object sender, EventArgs e)
+        private void instructions_Click(object sender, EventArgs e) // instructions
         {
 
             MessageBox.Show("Controling Your new ADSC Model Type V HMHRV (Helixtronics Millitary-grade Hypermanuverable Retrospace Vehicle)." + "\n" + "\n" + " Using Left (<--) Arrow button will increase your acceleration to the Left, while Right (-->) Arrow will increase your acceleration to the Right. Down Arrow will decrease your overall acceleration to make difficult manuvers easy." + "\n" + "Helixtronics Tech makes it easy to destroy enemy ships, Collect as much score as possible without taking too much damage to your fighter by hitting enemies." + "\n" + "Press Escape to Suicide. Don't stay still for too long otherwise you will take sustained slipstream damage!", "Comprehensive Directions For Playing Exinoid", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -457,21 +457,21 @@ namespace Attempt4
         {
         }
 
-        private void TextBox_MouseClick(object sender, MouseEventArgs e)
+        private void TextBox_MouseClick(object sender, MouseEventArgs e) 
         {
             TextBox.Text = "";
         }
 
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar)) //textbox validation
             {
                 e.Handled = true;
             }
 
         }
 
-        private void shoottimer_Tick(object sender, EventArgs e)
+        private void shoottimer_Tick(object sender, EventArgs e) //timer for shooting
         {
             missiles.Add(new Missile(player.playerRec));
 
@@ -493,7 +493,7 @@ namespace Attempt4
                 m.draw(g);
                 for (int i = 0; i < 9; i++)
                 {
-                    if (enemy[i].enemyRec.IntersectsWith(m.missileRec))
+                    if (enemy[i].enemyRec.IntersectsWith(m.missileRec)) //testing for missle collisions for score
                     {
                         enemy[i].BulletHit();
                         missiles.Remove(m);
@@ -502,7 +502,7 @@ namespace Attempt4
 
                         if (assist == true)
                         {
-                            scorefsx += 300000;
+                            scorefsx += 3;
                         }
                         else
                         {
@@ -513,7 +513,7 @@ namespace Attempt4
 
                 for (int i = 0; i < 3; i++)
                 {
-                    if (carrier[i].carrierRec.IntersectsWith(m.missileRec))
+                    if (carrier[i].carrierRec.IntersectsWith(m.missileRec)) //sdding score on enemy hit
                     {
                         carrier[i].BulletHit();
                         missiles.Remove(m);
@@ -521,7 +521,7 @@ namespace Attempt4
 
                         if (assist == true)
                         {
-                            scorefsx += 300000;
+                            scorefsx += 30;
                         }
                         else
                         {

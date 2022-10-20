@@ -63,7 +63,7 @@ namespace Attempt4
 
         }
 
-        public void Moveplayer(string move)
+        public void Moveplayer(string move) //acceleration code
         {
             if (move == "right")
             {

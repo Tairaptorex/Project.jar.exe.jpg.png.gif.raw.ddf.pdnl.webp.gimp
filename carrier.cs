@@ -40,7 +40,7 @@ namespace Attempt4
 
         public void DrawCarrier(Graphics g)
         {
-            carrierRec = new Rectangle(x, y, width, height);
+            carrierRec = new Rectangle(x, y, width, height); //MOVING THE CARRIER to new coordonates
             g.DrawImage(carrierImage, carrierRec);
         }
 

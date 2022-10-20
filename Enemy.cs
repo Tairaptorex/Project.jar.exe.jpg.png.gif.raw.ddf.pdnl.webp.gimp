@@ -28,7 +28,7 @@ namespace Attempt4
             enemyRec = new Rectangle(x, y, width, height);
         }
 
-        public void BulletHit()
+        public void BulletHit() //subtract lives from enemy facet
         {
             lives--;
             if (lives <= 0)
@@ -46,7 +46,7 @@ namespace Attempt4
 
         public void MoveEnemy()
         {
-            enemyRec.Location = new Point(x, y);
+            enemyRec.Location = new Point(x, y); //self explanitory
         }
 
         public void MoveEnemyX(int rand)
